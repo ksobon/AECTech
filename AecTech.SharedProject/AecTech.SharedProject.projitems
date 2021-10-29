@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>d4c7eb66-d4d7-4698-827c-1bfe9a54e096</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>AecTech</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AppCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FirstButton\FirstButtonCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SecondButton\RoomWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SecondButton\SecondButtonCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SecondButton\SecondButtonModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SecondButton\SecondButtonView.xaml.cs">
+      <DependentUpon>SecondButtonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)SecondButton\SecondButtonViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ThirdButton\SpatialObjectDeletedMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ThirdButton\ThirdButtonCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ThirdButton\ThirdButtonModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ThirdButton\ThirdButtonRequestHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ThirdButton\ThirdButtonView.xaml.cs">
+      <DependentUpon>ThirdButtonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ThirdButton\ThirdButtonViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\BaseClasses\ModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\ImageUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\32x32\firstButton.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\32x32\secondButton.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\32x32\thirdButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)SecondButton\SecondButtonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)ThirdButton\ThirdButtonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>
