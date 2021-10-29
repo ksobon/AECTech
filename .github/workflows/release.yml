@@ -1,0 +1,88 @@
+name: Release AEC Tech
+
+on:
+  workflow_dispatch:
+    inputs:
+      releaseVersion:
+        description: 'Release version'
+        required: true
+        default: '1.0.0.0'
+
+jobs:
+  build:
+    name: "Build and release AEC Tech"
+    runs-on: windows-latest
+
+    steps:
+      - name: "Checkout Master Branch"
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+        
+      - name: Setup MSbuild
+        uses: microsoft/setup-msbuild@v1.0.2
+        
+      - name: Setup Nuget.exe
+        uses: nuget/setup-nuget@v1
+
+      - name: Nuget Restore
+        run: nuget restore
+          
+      - name: MSBuild AECTech 2021
+        working-directory: AecTech.2021
+        run: |
+          msbuild /p:Configuration=Release
+          
+      - name: Zip AEC Tech 2021
+        run: |
+          New-Item -ItemType directory -Path AECTech2021
+          New-Item -ItemType directory -Path AECTech2021\AECTech
+          Copy-Item AecTech.2021\bin\Release\*.dll -Destination AECTech2021\AECTech
+          Copy-Item AecTech.2021\bin\Release\AECTech.addin -Destination AECTech2021\AECTech.addin
+          Compress-Archive -Path AECTech2021\* -DestinationPath AECTech2021.zip -Force
+          
+      - name: MSBuild AECTech 2022
+        working-directory: AecTech.2022
+        run: |
+          msbuild /p:Configuration=Release
+          
+      - name: Zip AEC Tech 2022
+        run: |
+          New-Item -ItemType directory -Path AECTech2022
+          New-Item -ItemType directory -Path AECTech2022\AECTech
+          Copy-Item AecTech.2022\bin\Release\*.dll -Destination AECTech2022\AECTech
+          Copy-Item AecTech.2022\bin\Release\AECTech.addin -Destination AECTech2022\AECTech.addin
+          Compress-Archive -Path AECTech2022\* -DestinationPath AECTech2022.zip -Force
+          
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.event.inputs.releaseVersion }}
+          release_name: Release v${{ github.event.inputs.releaseVersion }}
+          draft: false
+          prerelease: false
+          
+      - name: Upload AECTech2021.zip
+        id: upload-2021-zip
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: AECTech2021.zip
+          asset_name: AECTech2021.zip
+          asset_content_type: application/octet-stream
+          
+      - name: Upload AECTech2022.zip
+        id: upload-2022-zip
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: AECTech2022.zip
+          asset_name: AECTech2022.zip
+          asset_content_type: application/octet-stream
