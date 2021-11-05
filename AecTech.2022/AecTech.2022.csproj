@@ -89,6 +89,12 @@
     </Content>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AecTech.Core\AecTech.Core.csproj">
+      <Project>{58b192f9-af9d-463b-aeab-ae888c4192f1}</Project>
+      <Name>AecTech.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="..\AecTech.SharedProject\AecTech.SharedProject.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

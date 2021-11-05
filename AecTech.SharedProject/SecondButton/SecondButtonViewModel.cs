@@ -20,6 +20,11 @@ namespace AecTech.SecondButton
             set { _spatialObjects = value; RaisePropertyChanged(() => SpatialObjects); }
         }
 
+        /// <summary>
+        /// This is our constructor for the View Model. We want to initialize our commands
+        /// or any other variables that would be critical to the UI. 
+        /// </summary>
+        /// <param name="model"></param>
         public SecondButtonViewModel(SecondButtonModel model)
         {
             Model = model;

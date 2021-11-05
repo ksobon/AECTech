@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
 using System.Windows.Media.Imaging;
 
@@ -19,10 +18,11 @@ namespace AecTech.Utilities
                 img.StreamSource = stream;
                 img.EndInit();
             }
-            catch (Exception e)
+            catch
             {
                 // ignored
             }
+
             return img;
         }
     }

@@ -17,13 +17,11 @@ namespace AecTech.FirstButton
         {
             try
             {
-                var uiApp = commandData.Application;
-
                 MessageBox.Show("Hello World!", "AECTech", MessageBoxButton.OK);
 
                 return Result.Succeeded;
             }
-            catch (Exception e)
+            catch
             {
                 return Result.Failed;
             }

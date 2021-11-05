@@ -6,6 +6,7 @@
         BorderThickness="0,5,0,0"
         BorderBrush="#EEED75"
         Title="AEC Tech - Second Button"
+        Icon="/AecTech.Core;Component/Resources/aectech.ico"
         SizeToContent="Height"
         Width="800">
     <Window.Resources>
@@ -57,6 +58,14 @@
                 CommandParameter="{Binding ElementName=Win}"
                 Content="Delete"
                 Margin="0,0,97,10"
+                Grid.Row="1"
+                HorizontalAlignment="Right"
+                Width="75"
+                Height="20"
+                VerticalAlignment="Bottom" />
+        <Button Command="{Binding Select, Mode=OneWay}"
+                Content="Select"
+                Margin="0,0,182,10"
                 Grid.Row="1"
                 HorizontalAlignment="Right"
                 Width="75"

@@ -16,6 +16,14 @@ namespace AecTech.SecondButton
             set { _isSelected = value; RaisePropertyChanged(nameof(IsSelected)); }
         }
 
+        /// <summary>
+        /// We don't want to pass the actual Revit object around (SpatialElement). It has a lot of
+        /// properties and methods associated with it that are of no interest to us. For the UI that
+        /// we are building we only need to know its Name/Area/Id. This wrapper also allows us to
+        /// establish our own relationships with the UI like passing the Row's IsSelected property
+        /// into this wrapper's IsSelected property. 
+        /// </summary>
+        /// <param name="se"></param>
         public RoomWrapper(SpatialElement se)
         {
             Name = se.Name;

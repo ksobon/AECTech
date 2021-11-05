@@ -24,9 +24,15 @@ namespace AecTech.ThirdButton
             {
                 var uiApp = commandData.Application;
 
+                // (Konrad) Because this is a Modeless Dialog (launched via Show() instead of ShowDialog()), this command
+                // doesn't wait for that dialog to be closed. It means that you can press this button multiple times, and
+                // that could potentially open the UI multiple times. To prevent that from happening, we store a reference
+                // to the View here, and check if it's still open/minimized. Instead of re-creating it we can then just
+                // maximize/restore it. 
                 if (View != null)
                 {
-                    if (View.WindowState == WindowState.Minimized) View.WindowState = WindowState.Normal;
+                    if (View.WindowState == WindowState.Minimized)
+                        View.WindowState = WindowState.Normal;
                     View.Activate();
 
                     return Result.Succeeded;
@@ -40,6 +46,9 @@ namespace AecTech.ThirdButton
                 };
 
                 View = v;
+                // (Konrad) We can keep track of the Window Closing event to know when that UI is actually closed. When that
+                // happens we would reset the View property here to Null, so that when user presses the button we can create
+                // a brand new instance of that View.
                 View.Closing += OnViewClosing;
 
                 var unused = new WindowInteropHelper(v)
@@ -51,7 +60,7 @@ namespace AecTech.ThirdButton
 
                 return Result.Succeeded;
             }
-            catch (Exception e)
+            catch
             {
                 return Result.Failed;
             }

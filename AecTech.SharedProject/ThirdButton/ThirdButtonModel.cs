@@ -35,5 +35,12 @@ namespace AecTech.ThirdButton
             AppCommand.ThirdButtonHandler.Request = RequestId.Delete;
             AppCommand.ThirdButtonEvent.Raise();
         }
+
+        public void Select(List<RoomWrapper> selected)
+        {
+            AppCommand.ThirdButtonHandler.Arg1 = selected;
+            AppCommand.ThirdButtonHandler.Request = RequestId.Select;
+            AppCommand.ThirdButtonEvent.Raise();
+        }
     }
 }

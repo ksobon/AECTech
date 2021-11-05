@@ -36,7 +36,7 @@ namespace AecTech.SecondButton
 
                 return Result.Succeeded;
             }
-            catch (Exception e)
+            catch
             {
                 return Result.Failed;
             }
