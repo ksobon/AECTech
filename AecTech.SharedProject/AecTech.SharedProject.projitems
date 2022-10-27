@@ -11,6 +11,18 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AppCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FirstButton\FirstButtonCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FourthButton\DockablePanelPage.xaml.cs">
+      <DependentUpon>DockablePanelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)FourthButton\DockablePanelUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FourthButton\DockablePanelViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FourthButton\ElementWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FourthButton\FourthButtonCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FourthButton\AddedElementsMessages.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FourthButton\RequirementControl.xaml.cs">
+      <DependentUpon>RequirementControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)FourthButton\RequirementWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SecondButton\RoomWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SecondButton\SecondButtonCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SecondButton\SecondButtonModel.cs" />
@@ -27,6 +39,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ThirdButton\ThirdButtonViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\BaseClasses\ModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\DialogUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\ImageUtils.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -35,6 +48,14 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\32x32\thirdButton.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)FourthButton\DockablePanelPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)FourthButton\RequirementControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)SecondButton\SecondButtonView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -43,5 +64,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\32x32\fourthButton.png" />
   </ItemGroup>
 </Project>

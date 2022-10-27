@@ -11,10 +11,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AecTech.2021", "AecTech.202
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AecTech.Core", "AecTech.Core\AecTech.Core.csproj", "{58B192F9-AF9D-463B-AEAB-AE888C4192F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AecTech.2023", "AecTech.2023\AecTech.2023.csproj", "{C00A40A4-2913-4FB6-9244-83D51B62A152}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		AecTech.SharedProject\AecTech.SharedProject.projitems*{12f394f5-e9ff-4d58-8fcb-1fef55f958e2}*SharedItemsImports = 4
 		AecTech.SharedProject\AecTech.SharedProject.projitems*{a69d24cb-f406-4f1d-b795-39bcbf554b3b}*SharedItemsImports = 4
+		AecTech.SharedProject\AecTech.SharedProject.projitems*{c00a40a4-2913-4fb6-9244-83d51b62a152}*SharedItemsImports = 4
 		AecTech.SharedProject\AecTech.SharedProject.projitems*{d4c7eb66-d4d7-4698-827c-1bfe9a54e096}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +37,10 @@ Global
 		{58B192F9-AF9D-463B-AEAB-AE888C4192F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58B192F9-AF9D-463B-AEAB-AE888C4192F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58B192F9-AF9D-463B-AEAB-AE888C4192F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C00A40A4-2913-4FB6-9244-83D51B62A152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C00A40A4-2913-4FB6-9244-83D51B62A152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C00A40A4-2913-4FB6-9244-83D51B62A152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C00A40A4-2913-4FB6-9244-83D51B62A152}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

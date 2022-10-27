@@ -1,9 +1,12 @@
 ﻿using System.Linq;
 using AecTech.Core;
 using AecTech.FirstButton;
+using AecTech.FourthButton;
 using AecTech.SecondButton;
 using AecTech.ThirdButton;
+using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace AecTech
 {
@@ -11,7 +14,7 @@ namespace AecTech
     {
         public static ThirdButtonRequestHandler ThirdButtonHandler { get; set; }
         public static ExternalEvent ThirdButtonEvent { get; set; }
-
+        
         public Result OnStartup(UIControlledApplication app)
         {
             // (Konrad) This is only here because that Core DLL needs to be loaded
@@ -33,11 +36,26 @@ namespace AecTech
             FirstButtonCommand.CreateButton(ribbonPanel);
             SecondButtonCommand.CreateButton(ribbonPanel);
             ThirdButtonCommand.CreateButton(ribbonPanel);
+            FourthButtonCommand.CreateButton(ribbonPanel);
 
             ThirdButtonHandler = new ThirdButtonRequestHandler();
             ThirdButtonEvent = ExternalEvent.Create(ThirdButtonHandler);
 
+            DockablePanelUtils.RegisterDockablePanel(app);
+
+            app.ControlledApplication.DocumentChanged += OnDocumentChanged;
+
             return Result.Succeeded;
+        }
+
+        private static void OnDocumentChanged(object sender, DocumentChangedEventArgs e)
+        {
+            if (e.Operation != UndoOperation.TransactionCommitted)
+                return;
+
+            var doc = e.GetDocument();
+            var addedElements = e.GetAddedElementIds().Select(x => new ElementWrapper(doc.GetElement(x))).ToList();
+            Messenger.Default.Send(new AddedElementsMessages(addedElements));
         }
 
         public Result OnShutdown(UIControlledApplication app)
